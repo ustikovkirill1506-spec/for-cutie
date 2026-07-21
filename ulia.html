@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для Юли ✨</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle, #1a0b2e 0%, #05010d 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            position: relative;
+        }
+
+        /* Контейнер для текста */
+        .card {
+            text-align: center;
+            z-index: 10;
+            padding: 20px;
+            animation: fadeIn 2s ease-out;
+        }
+
+        /* Анимация появления контента */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Главная неоновая надпись */
+        h1 {
+            color: #fff;
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 
+                0 0 10px #ff007f,
+                0 0 20px #ff007f,
+                0 0 40px #ff007f,
+                0 0 80px #ff007f;
+            animation: pulseGlow 2.5s infinite ease-in-out alternate;
+            margin-bottom: 20px;
+        }
+
+        /* Пульсация неонового свечения */
+        @keyframes pulseGlow {
+            0% {
+                text-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f, 0 0 30px #ff007f;
+                transform: translateY(0);
+            }
+            100% {
+                text-shadow: 0 0 15px #ff55a5, 0 0 30px #ff55a5, 0 0 50px #ff007f, 0 0 70px #ff007f;
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Подпись чуть ниже */
+        p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Стили для летающих сердечек */
+        .heart {
+            position: absolute;
+            color: #ff007f;
+            font-size: 1.5rem;
+            pointer-events: none;
+            opacity: 0;
+            animation: floatUp 6s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(105vh) translateX(0) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-10vh) translateX(50px) scale(1.2);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Юля — красотка ✨</h1>
+        <p>И это чистая правда!</p>
+    </div>
+
+    <script>
+        // Скрипт генерирует летающие сердечки на фоне
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            
+            // Массив разных сердечек и звездочек для разнообразия
+            const symbols = ['❤️', '💖', '✨', '💕', '🌸'];
+            heart.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+            
+            // Случайная позиция по горизонтали
+            heart.style.left = Math.random() * 100 + 'vw';
+            
+            // Случайный размер
+            const size = Math.random() * 1.5 + 0.5;
+            heart.style.fontSize = size + 'rem';
+            
+            // Случайная скорость анимации
+            const duration = Math.random() * 3 + 4;
+            heart.style.animationDuration = duration + 's';
+            
+            // Случайная задержка старта
+            heart.style.animationDelay = Math.random() * 2 + 's';
+
+            document.body.appendChild(heart);
+
+            // Удаляем элемент после завершения анимации, чтобы не забивать память
+            setTimeout(() => {
+                heart.remove();
+            }, (duration + 2) * 1000);
+        }
+
+        // Каждые 300мс создаем новое сердечко
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
